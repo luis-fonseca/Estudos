@@ -1,0 +1,100 @@
+Plugins
+
+O que são?
+Eles extendem a capacidade do Wordpress e permitem adicionar recursos.
+
+Como interagem?
+Os plugins interagem com o Wordpress através de APIs. Existem diversas APIs para isso:
+
+- Plugin
+Fornece um conjunto de hooks (ganchos) que possibilita acessar partes específicas do Wordpress. Existem dois tipos de hooks: Actions (Ações) e Filter (Filtros). O Action hook permite disparar um código customizado de um plugin durante a execução de pontos específicos, como, por exemplo, executar uma função customizada após o usuário registrar uma conta no Wordpress. Um Filter hook modifica um texto, antes de adicioná-lo ou depois de recuperá-lo de um banco de dados.
+
+- Widgets
+Cria e gerencia widgets no plugin. Widgets estão disponíveis na tela Aparência >> Widgets para serem adicionadas a qualquer barra lateral (sidebars) registrada no tema. A API permite que múltiplas instâncias de um mesmo widget sejam usados por todas as barras laterais.
+
+- Shortcode
+Adiciona suporte a shortcode ao plugin. Um shortcode é um hook simples que possibilita chamar uma função PHP ao adicionar algo como [shortcode] a um post ou página.
+
+- HTTP
+Envia solicitações HTTP a partir do plugin. Esta API envia ou recupera conteúdo de uma URL externa. Atualmente há 5 formas diferentes de enviar um pedido HTTP. Esta API padroniza o processo e testa cada método, antes da execução. 
+Baseado nas configurações do servidor, a API usará o método apropriado e fará o pedido.
+
+- Settings
+Adiciona configurações ou uma seção de configurações a um plugin. A vantagem primária ao usar a API de Configurações é a segurança. Os dados são manipulados de forma a sanitizar, além de outras medidas de segurança, então não é necessário se preocupar com ataques do tipo CSRF ou XSS quando salvar as configurações do plugin.
+
+- Options
+Guarda ou recupera opções no plugin. A API tem uma forma padronizada e simples de criar, atualizar, excluir ou recuperar qualquer opção já definida. Os dados são armazenados na tabela wp_options.
+
+- Dashboard Widgets
+Cria widget de dashboard para o admin. Widgets automáticamente aparecem no Dashboard do Wordpress e contém todos os recursos de customização padrão incluindo minimizar, arrastar e soltar, e opções de tela para esconder.
+
+- Rewrite
+Cria regras customizadas de reescrita no plugin. Esta API permite adicionar pontos finais estáticos (static end-point) (/custom-page/), estrutura de tags (%postname%) e link de feed adicionais (/feed/json/)
+
+- Transients
+Cria opções temporárias (dados cacheados) nos plugins. Esta API é similar a API Options, mas todas as opções salvas têm um tempo de expiração.
+
+- Database
+Acessa o banco de dados do Wordpress. Isso inclui criar, atualizar, excluir e recuperar registros do banco de dados para uso nos plugins.
+
+O Wordpress possui funções plugáveis. Essas funções permitem sobreescrever funções principais específicas em um plugin. A função wp_mail() é uma função plugável. É possível definir essa função em um plugin e enviar um e-mail pelo SMTP, ao invés do método padrão. Todas as funções plugáveis estão localizadas no arquivo principal do Wordpress em /wp-includes/pluggable.php.
+
+É possível usar algumas funções pré-definidas durante tarefas específicas, como a ativação ou desativação de plugins ou até mesmo quando um plugin é desinstalado.
+
+
+Vantagens de se construir um plugin
+
+Não modificar o núcleo
+O núcleo se refere aos arquivos principais que fazem parte da instalação padrão do Wordpress. Ao instalar um plugin é possível alterar o comportamento do Wordpress sem modificá-los.
+
+Ao alterar um dos arquivos principais torna difícil realizar uma atualização do Wordpress, pois geralmente ela sobrescreverá os arquivos modificados com a nova versão. Manter o Wordpress atualizado é importante, pois mantém o website seguro.
+
+Além do problema de atualização, esses tipos de alterações podem tornar o website instável. Existem partes diferentes que se dependem. Quando se modifica um arquivo e ele não funciona, conforme o esperado causa instabilidades e quebra completamente um recursos não relacionado.
+
+Por que reinventar a roda?
+Existe uma estrutura pronta para ser usada nos plugins, pois muitos dos recursos comuns já foram desenvolvidos. Um exemplo são as regras de usuário no Wordpress. Ao usar regras de usuários é possível facilmente restringir um código e permitir seu funcionamento somente pelo administrador.
+
+<?php
+	if ( current_user_can( ‘manage_options’ ) ) {
+		//any code entered here will only be executed IF
+		//user is an administrator
+	}
+?>
+
+Nesse caso é possível checar se o usuário é um administrador, antes de executar o código do plugin.
+
+<?php
+	$email_to = ‘you@example.com’;
+	$email_subject = ‘Plugin email example’;
+	$email_message = ‘How do you like my new plugin?’;
+	wp_mail( $email_to, $email_subject, $email_message );
+?>
+
+Nesse outro exemplo, a função wp_mail() permite enviar um e-mail sem necessidade de se criar outra função com a mesma finalidade.
+
+Utilizar recursos embutidos reduz o tempo de desenvolvimento de um plugin por não ter que reinventar a roda e permitir que os plugins funcionem em um maior número de servidores e configurações.
+
+Separação de Plugins e Temas
+Um plugin pode ter controle do processo de renderização, então, de certa forma, um plugin pode se tornar um tema. Um tema, de maneira similar, pode ter a funcionalidade dos plugins embutidas. Essa diferença pode ser de difícil percepção, então porque não incluir um plugin diretamente no tema?
+
+Os temas não deveriam incluir as funcionalidades dos plugins, com raras as exceções. A primeira razão é que os plugins adicionam recursos e funcionalidades ao Wordpress de forma independente aos temas, o que cria uma separação entre a funcionalidade e design do site. Essa separação deve existir porque o tema não estará vinculado diretamente a alguma funcionalidade necessária. O Wordpress foi concebido para permitir alternar facilmente entre temas a qualquer momento com alguns cliques. Se ao adicionar todas as funcionalidades a um determinado tema e posteriormente decidir alternar para outra toda funcionalidade necessária será perdida.
+
+A um argumento de que certas funcionalidades devem ser incluídas em um tema. Um recurso bastante comum é a navegação breadcrumb (migalhas de pão). Provavelmente é um recurso existente em um plugin, mas como é um recurso centrado a navegação faz sentido incluir isso no tema. Outro recurso bastante comum é o de otimização de motores de pesquisa.
+
+Fácil Atualização
+O Wordpress torna fácil atualizar um plugin para a sua última versão. Cada plugin instalado a partir do Diretório de Plugins do Wordpress.org avisa quando uma nova atualização foi liberada. Para realizar a atualização basta clicar na notificação de atualização listada logo abaixo, nos detalhes do plugin, na tela de Plugins.
+
+Plugins que não foram instalados do Diretório de Plugins podem também ser atualizados pela funcionaliade de auto update. Para isso o autor precisa definir onde o Wordpress pode descarregar a última versão e ele cuidará de todo o resto. Caso o autor não tenha definido essa localização, então o usuário deverá realizar a atualização manualmente.
+
+Manter os plugins atualizados é um passo importante para manter o site livre de problemas de segurança e erros.
+
+Facilidade de Compartilhar e Reutilizar
+Plugins são fáceis de serem compartilhados. É mais fácil compartilhar um plugin do que modificar linhas específicas de código no tema ou Wordpress. Com um mesmo plugin ou grupos de plugins é possível usar a mesma funcionalidade através de vários sites. 
+
+Plugin Sandbox (Caixa de areia)
+Ativar um plugin quebrado não parará o site. Se um plugin disparar um erro fatal, o Wordpress automaticamente desativa o plugin, antes que ele tenha a chance disso. Esse recurso de segurança contra falhas torna menos arriscado quando se ativa ou testa novos plugins. Mesmo se o plugin causar uma tela branca da morte (mensagem de erro), ainda sim é possível facilmente renomear uma pasta de um plugin, e o Wordpress desativa ele. Isso torna impossível um plugin ruim bloquear um site por conta de um erro.
+
+Por outro lado, se tentar modificar o núcleo do Wordpress, é bem possível causar erros fatais que derrubarão o site. Isso inclui danos irrecuperáveis ao Wordpress.
+
+Comunidade de Plugins
+Uma grande comunidade é voltada ao desenvolvimento de plugins, compartilhando conhecimento e código. Envolver-se na comunidade é uma grande forma de levar a habilidade no desenvolvimento de plugins a um próximo nível.
