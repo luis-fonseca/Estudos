@@ -1,5 +1,7 @@
 Plugins
 
+Capítulo 1
+
 O que são?
 Eles extendem a capacidade do Wordpress e permitem adicionar recursos.
 
@@ -80,14 +82,14 @@ Utilizar recursos embutidos reduz o tempo de desenvolvimento de um plugin por n�
 Separação de Plugins e Temas
 Um plugin pode ter controle do processo de renderização, então, de certa forma, um plugin pode se tornar um tema. Um tema, de maneira similar, pode ter a funcionalidade dos plugins embutidas. Essa diferença pode ser de difícil percepção, então porque não incluir um plugin diretamente no tema?
 
-Os temas não deveriam incluir as funcionalidades dos plugins, com raras as exceções. A primeira razão é que os plugins adicionam recursos e funcionalidades ao Wordpress de forma independente aos temas, o que cria uma separação entre a funcionalidade e design do site. Essa separação deve existir porque o tema não estará vinculado diretamente a alguma funcionalidade necessária. O Wordpress foi concebido para permitir alternar facilmente entre temas a qualquer momento com alguns cliques. Se ao adicionar todas as funcionalidades a um determinado tema e posteriormente decidir alternar para outra toda funcionalidade necessária será perdida.
+Os temas não deveriam incluir as funcionalidades dos plugins, com raras as exceções. A primeira razão é que os plugins adicionam recursos e funcionalidades ao Wordpress de forma independente aos temas, o que cria uma separação entre a funcionalidade e design do site. Essa separação deve existir porque o tema não estará vinculado diretamente a alguma funcionalidade necessária. O Wordpress foi concebido para permitir alternar facilmente entre temas a qualquer momento com alguns cliques. Se ao adicionar todas as funcionalidades a um determinado tema e quiser, posteriormente, alternar para outro tema, toda funcionalidade necessária será perdida.
 
-A um argumento de que certas funcionalidades devem ser incluídas em um tema. Um recurso bastante comum é a navegação breadcrumb (migalhas de pão). Provavelmente é um recurso existente em um plugin, mas como é um recurso centrado a navegação faz sentido incluir isso no tema. Outro recurso bastante comum é o de otimização de motores de pesquisa.
+A um argumento de que certas funcionalidades devem ser incluídas em um tema. Um recurso bastante comum é a navegação breadcrumb (migalhas de pão). Provavelmente é um recurso existente em um plugin, mas como é um recurso centrado na navegação faz sentido incluir isso no tema. Outro recurso bastante comum é o de otimização de motores de pesquisa.
 
 Fácil Atualização
 O Wordpress torna fácil atualizar um plugin para a sua última versão. Cada plugin instalado a partir do Diretório de Plugins do Wordpress.org avisa quando uma nova atualização foi liberada. Para realizar a atualização basta clicar na notificação de atualização listada logo abaixo, nos detalhes do plugin, na tela de Plugins.
 
-Plugins que não foram instalados do Diretório de Plugins podem também ser atualizados pela funcionaliade de auto update. Para isso o autor precisa definir onde o Wordpress pode descarregar a última versão e ele cuidará de todo o resto. Caso o autor não tenha definido essa localização, então o usuário deverá realizar a atualização manualmente.
+Plugins que não foram instalados a partir do Diretório de Plugins podem também ser atualizados pela funcionaliade de auto update. Para isso o autor precisa definir onde o Wordpress pode descarregar a última versão e ele cuidará de todo o resto. Caso o autor não tenha definido essa localização, então o usuário deverá realizar a atualização manualmente.
 
 Manter os plugins atualizados é um passo importante para manter o site livre de problemas de segurança e erros.
 
@@ -95,7 +97,7 @@ Facilidade de Compartilhar e Reutilizar
 Plugins são fáceis de serem compartilhados. É mais fácil compartilhar um plugin do que modificar linhas específicas de código no tema ou Wordpress. Com um mesmo plugin ou grupos de plugins é possível usar a mesma funcionalidade através de vários sites. 
 
 Plugin Sandbox (Caixa de areia)
-Ativar um plugin quebrado não parará o site. Se um plugin disparar um erro fatal, o Wordpress automaticamente desativa o plugin, antes que ele tenha a chance disso. Esse recurso de segurança contra falhas torna menos arriscado quando se ativa ou testa novos plugins. Mesmo se o plugin causar uma tela branca da morte (mensagem de erro), ainda sim é possível facilmente renomear uma pasta de um plugin, e o Wordpress desativa ele. Isso torna impossível um plugin ruim bloquear um site por conta de um erro.
+Ativar um plugin quebrado não parará o site. Se um plugin disparar um erro fatal, o Wordpress automaticamente desativa o plugin, antes que ele tenha a chance disso. Esse recurso de segurança contra falhas torna menos arriscado quando se ativa ou testa novos plugins. Mesmo se o plugin causar uma tela branca da morte (mensagem de erro), ainda sim é possível facilmente renomear uma pasta de um plugin, e o Wordpress desativará ele. Isso torna impossível um plugin ruim bloquear um site por conta de um erro.
 
 Por outro lado, se tentar modificar o núcleo do Wordpress, é bem possível causar erros fatais que derrubarão o site. Isso inclui danos irrecuperáveis ao Wordpress.
 
@@ -110,14 +112,14 @@ O Wordpress tem 3 métodos para instalar um novo plugin. A configuração do ser
 
 O primeiro método utiliza um auto instalador embutido. Este método permite buscar no Diretório de Plugins do Wordpress.org diretamente a partir do dashboard do admin no web site do Wordpress. Depois que for encontrado um plugin para instalação, basta clicar no link Install, e o plugin automaticamente será descarregado e instalado.
 
-O segundo método utiliza um uploader de zip. Arquivos de plugins compactados podem ser enviados, extraídos e instalados pelo Wordpress. Para usar esse método click no link de Upload no topo da página de instalação de Plugins. Após isso clique no plugin compactado no formato .zip e então, no botão Instalar Agora. 
+O segundo método utiliza o envio de um arquivo compactado. Arquivos de plugins compactados podem ser enviados, extraídos e instalados pelo Wordpress. Para usar esse método clique no link de Upload no topo da página de instalação de Plugins. Após isso clique no plugin compactado no formato .zip e então, no botão Instalar Agora. 
 
 Finalmente, o terceiro método para instalar um plugin no Wordpress é usar o FTP. Para isso basta se conectar ao servidor web utilizando um cliente FTP e manualmente enviar o plugin para a instalação do Wordpress. Para usar esse método envie o diretório de um plugin descompactado ou arquivo para o diretório wp-content/plugins no servidor web.
 
 Gerenciando Plugins
 Depois que um plugin foi instalado no Wordpress é possível gererenciá-lo, com todos os outros plugins, na tela Plugins >> Plugins. Nela é possível encontrar uma lista de todos os plugins, ativos ou não, disponíveis na instalação do Wordpress. É possível facilmente ativar, desativar, editar, atualizar e excluir plugins a partir dessa tela.
 
-A tela de plugins também suporte ações em lote para ativar, desativar, atualizar e excluir plugins. Após verificar todos os plugins que se quer gerenciar, selecione a ação em lote adequada a partir do menu dropdown. 
+A tela de plugins também suporta ações em lote para ativar, desativar, atualizar e excluir plugins. Após verificar todos os plugins que se quer gerenciar, selecione a ação em lote adequada a partir do menu dropdown. 
 
 Editando Plugins
 O Wordpress vem com um editor de plugins embutido na tela Plugins >> Editor. O editor de plugins possibilita ver e editar o código fonte de qualquer plugin instalado no Wordpress. Só é possível editar o código fonte de um plugin se o arquivo de plugin tem permissão de escrita no servidor e, caso contrário, o código terá somente visualização.
@@ -127,7 +129,7 @@ Para usar o editor, selecione o plugin a partir do menu dropdown no canto superi
 Nota: Ao editar um plugin diretamente pelo editor tenha em mente que o navegador não tem um botão de desfazer e nem há um registro de alterações de código, então uma alteração ruim pode quebrar o site inteiro já que não há possibilidade de reverter as mudanças. É melhor usar o editor de código como referência e nunca editar os arquivos do plugin.
 
 Diretórios de Plugin
-Um fato menos conhecido é que atualmente há dois diretórios de plugins. O diretório primário é localizado sob wp-content/plugins em uma instalação padrão do Wordpress. O segundo diretório de plugins, menos conhecido, está localizado sob wp-content/mu-plugins. O diretório wp-content/mu-plugins, que significa Must-Use (deve usar), não é automaticamente criado pelo Wordpress e então, de ve ser criado manualmente. A principal diferença entre os dois é que o diretório mu-plugins é sempre executado. Isso significa que qualquer plugin incluído nesse diretório será automaticamente carregado no Wordpress e em todos os sites em uma rede se estiver executando em ambiente Multisite.
+Um fato menos conhecido é que atualmente há dois diretórios de plugins. O diretório primário é localizado sob wp-content/plugins em uma instalação padrão do Wordpress. O segundo diretório de plugins, menos conhecido, está localizado sob wp-content/mu-plugins. O diretório wp-content/mu-plugins, que significa Must-Use (deve usar), não é automaticamente criado pelo Wordpress e então, deve ser criado manualmente. A principal diferença entre os dois é que o diretório mu-plugins é sempre executado. Isso significa que qualquer plugin incluído nesse diretório será automaticamente carregado no Wordpress e em todos os sites em uma rede se estiver executando em ambiente Multisite.
 
 Nota: O diretório mu-plugins não lerá plugins em um subdiretório, então todos os plugins devem ser arquivos individuais ou devem incluir os arquivos adicionais que existem em um subdiretório. Qualquer arquivo de plugin em um subdiretório será ignorado a menos que seja incluído em um arquivo primário de plugin.
 
@@ -162,4 +164,34 @@ Os últimos quatro plugins são específicos do recurso Multisite do Wordpress. 
 Quando desenvolver um novo plugin, determine qual o tipo de plugin que você quer criar, antes de começar o processo de desenvolvimento. A maioria dos plugins serão plugins padrão, mas ocasionalmente seja necessário criar um tipo de plugin específico do tipo Must-Use ou Drop-in.
 
 Testando a funcionalidade de um plugin
-Em algumas ocasiões talvez queira testar alguma f
+Em algumas ocasiões talvez queira testar alguma funcionalidade de um plugin sem atualmente criar um plugin para isso. Muitos desenvolvedores colocarão o código diretamente no arquivo wp-config.php para isso. Essa é uma técnica ruim e não deveria ser usada porque quando o arquivo de configuração é analisado e carregado, o Wordpress não foi instanciado inteiramente ainda.
+
+Ao invés de alterar o wp-config.php, crie um arquivo test.php com o seguinte fragmento de código e coloque no diretório raiz do Wordpress:
+
+<?php
+  // Carregar o ambiente do WordPress
+  // define('WP_DEBUG', true); /* uncomment for debug mode */
+  require('./wp-load.php');
+  // require_once ('./wp-admin/admin.php'); /* remova o comentário para o is_admin() */
+?>
+<pre>
+  <?php
+    /* teste algo aqui */
+    var_dump(is_admin());
+  ?>
+</pre>
+
+Essa é uma forma rápida de carregar todas as funções necessárias do WordPress para testar a funcionalidade do plugin sem atualmente criar um plugin. Como você pode ver wp-load.php foi incluído no começo do arquivo. É possível incluir wp-admin/admin.php se quiser testar a funcionalidade como admin. Uma vez que tenha incluído os arquivos principais necessários ao WordPress é possível testar qualquer código que estaria no plugin a ser desenvolvido. Após concluir é necessário remover esse arquivo test.php do diretório raiz.
+
+Resumo
+Foi aprendido o que são plugins, como eles interagem com o WordPress através das APIs. As principais vantagens de se usar um plugin e porque nem sempre deveriam ser incluído no tema. Instalar e gerenciar plugins no painel administrativo do WordPress.
+
+Capítulo 2
+
+- Criar uma base sólida para o plugin
+- Determinando os caminhos do diretório e arquivos
+- Usar funções de ativar e desativar
+- Entendendo os métodos disponíveis para deinstalar
+- Gerenciar as práticas de sanitizar e padrões de codificação
+- Compreensão apropriada da documentação do código
+- Usar checklist para o desenvolvimento de plugins
