@@ -41,6 +41,9 @@ O Wordpress possui funções plugáveis. Essas funções permitem sobreescrever 
 
 É possível usar algumas funções pré-definidas durante tarefas específicas, como a ativação ou desativação de plugins ou até mesmo quando um plugin é desinstalado.
 
+Quando os plugins são carregados?
+São carregados no ínicio do processo quando uma página web é chamada. O fluxo abaixo muda ligeiramente quando uma página admin é carregada. As diferenças são pequenas e afetam primariamente qual tema é carregado: tema do admin versus o tema do web site.
+
 
 Vantagens de se construir um plugin
 
@@ -98,3 +101,65 @@ Por outro lado, se tentar modificar o núcleo do Wordpress, é bem possível cau
 
 Comunidade de Plugins
 Uma grande comunidade é voltada ao desenvolvimento de plugins, compartilhando conhecimento e código. Envolver-se na comunidade é uma grande forma de levar a habilidade no desenvolvimento de plugins a um próximo nível.
+
+Instalação e Gerenciamento de Plugins
+O gerenciamento de todos os plugins acontece na tela de Plugins no Dashboard do Wordpress. O menu para adicionar plugins não pode ser visto por quem não é admin. Se o recurso Multisite do Wordpress for utilizado, o menu de Plugins é escondido por padrão. Você precisa habilitar o menu sob Network Admin >> Settings.
+
+Instalação de Plugins
+O Wordpress tem 3 métodos para instalar um novo plugin. A configuração do servidor dita qual método é o melhor para usar.
+
+O primeiro método utiliza um auto instalador embutido. Este método permite buscar no Diretório de Plugins do Wordpress.org diretamente a partir do dashboard do admin no web site do Wordpress. Depois que for encontrado um plugin para instalação, basta clicar no link Install, e o plugin automaticamente será descarregado e instalado.
+
+O segundo método utiliza um uploader de zip. Arquivos de plugins compactados podem ser enviados, extraídos e instalados pelo Wordpress. Para usar esse método click no link de Upload no topo da página de instalação de Plugins. Após isso clique no plugin compactado no formato .zip e então, no botão Instalar Agora. 
+
+Finalmente, o terceiro método para instalar um plugin no Wordpress é usar o FTP. Para isso basta se conectar ao servidor web utilizando um cliente FTP e manualmente enviar o plugin para a instalação do Wordpress. Para usar esse método envie o diretório de um plugin descompactado ou arquivo para o diretório wp-content/plugins no servidor web.
+
+Gerenciando Plugins
+Depois que um plugin foi instalado no Wordpress é possível gererenciá-lo, com todos os outros plugins, na tela Plugins >> Plugins. Nela é possível encontrar uma lista de todos os plugins, ativos ou não, disponíveis na instalação do Wordpress. É possível facilmente ativar, desativar, editar, atualizar e excluir plugins a partir dessa tela.
+
+A tela de plugins também suporte ações em lote para ativar, desativar, atualizar e excluir plugins. Após verificar todos os plugins que se quer gerenciar, selecione a ação em lote adequada a partir do menu dropdown. 
+
+Editando Plugins
+O Wordpress vem com um editor de plugins embutido na tela Plugins >> Editor. O editor de plugins possibilita ver e editar o código fonte de qualquer plugin instalado no Wordpress. Só é possível editar o código fonte de um plugin se o arquivo de plugin tem permissão de escrita no servidor e, caso contrário, o código terá somente visualização.
+
+Para usar o editor, selecione o plugin a partir do menu dropdown no canto superior direito da página Edit >> Plugins. O Editor lista todos os arquivos associados com o plugin selecionado. Há também um recurso para facilitar a pesquisa na documentação de uma função específica do plugin que é revisto.
+
+Nota: Ao editar um plugin diretamente pelo editor tenha em mente que o navegador não tem um botão de desfazer e nem há um registro de alterações de código, então uma alteração ruim pode quebrar o site inteiro já que não há possibilidade de reverter as mudanças. É melhor usar o editor de código como referência e nunca editar os arquivos do plugin.
+
+Diretórios de Plugin
+Um fato menos conhecido é que atualmente há dois diretórios de plugins. O diretório primário é localizado sob wp-content/plugins em uma instalação padrão do Wordpress. O segundo diretório de plugins, menos conhecido, está localizado sob wp-content/mu-plugins. O diretório wp-content/mu-plugins, que significa Must-Use (deve usar), não é automaticamente criado pelo Wordpress e então, de ve ser criado manualmente. A principal diferença entre os dois é que o diretório mu-plugins é sempre executado. Isso significa que qualquer plugin incluído nesse diretório será automaticamente carregado no Wordpress e em todos os sites em uma rede se estiver executando em ambiente Multisite.
+
+Nota: O diretório mu-plugins não lerá plugins em um subdiretório, então todos os plugins devem ser arquivos individuais ou devem incluir os arquivos adicionais que existem em um subdiretório. Qualquer arquivo de plugin em um subdiretório será ignorado a menos que seja incluído em um arquivo primário de plugin.
+
+Tipos de Plugins
+O Wordpress vem com diferentes tipos e status de plugins:
+
+Ativo
+O plugin está ativo e executando no Wordpress.
+
+Inativo
+O plugin está instalado, mas não ativo. Nenhum código do plugin é executado.
+
+Must-Use
+Todos os plugins instalados no diretório wp-content/mu-plugins. Todos os plugins Must-Use, ou MU, são carregados automaticamente. A única forma de desativar um plugin MU é removê-lo completamente desse diretório.
+
+Drop-ins
+Funcionalidades principais do Wordpress podem ser substituídas por plugins Drop-in. Esses plugins são arquivos PHP nomeados especificamente e localizados no diretório wp-content. Se o Wordpress detecta um desses arquivos, ele será carregado automaticamente e listado sob o filtro Drop-in na tela de Plugin. Atualmente existem 10 plugins Drop-in disponíveis:
+
+- advanced-cache.php — Plugin de cache avançado
+- db.php — Classe de banco de dados customizada
+- db - error.php — Mensagem de erro de banco de dados customizada
+- install.php — Script de instalação customizada
+- maintenance.php — Mensagem de manutenção customizada
+- object-cache.php — Objeto de cache externo
+- sunrise.php — Mapeamento de domínio avançado
+- blog-deleted.php — Mensagem customizada de blog excluído
+- blog-inactive.php — Mensagem customizada de blog inativo
+- blog-suspended.php — Mensagem customizada de blog suspenso
+
+Os últimos quatro plugins são específicos do recurso Multisite do Wordpress. Uma instalação padrão do Wordpress não terá uso para esses plugins.
+
+Quando desenvolver um novo plugin, determine qual o tipo de plugin que você quer criar, antes de começar o processo de desenvolvimento. A maioria dos plugins serão plugins padrão, mas ocasionalmente seja necessário criar um tipo de plugin específico do tipo Must-Use ou Drop-in.
+
+Testando a funcionalidade de um plugin
+Em algumas ocasiões talvez queira testar alguma f
